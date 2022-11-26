@@ -1,8 +1,45 @@
-* {
-  margin: 0;
-  padding: 0;
-}
+html,
 body {
+  height: 100%;
+  /* background-image: url(https://images.wondershare.com/filmora/article-images/2021/aesthetic-pixel-background.jpg); */
+  background-image: url(https://wallpaperaccess.com/full/2802541.png);
+  background-repeat: repeat;
+  background-size: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100%;
+}
+
+container-fluid {
+  height: 100%;
+}
+
+.vw {
+  width: 30vw;
+}
+
+.vh {
+  height: 30vw;
+}
+
+.h-40 {
+  height: 40%;
+}
+
+.title {
+  /* font-weight: bold; */
+  font-size: 8rem;
+  text-shadow: 4px 4px 7px black;
+}
+
+
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -29,7 +66,60 @@ body {
   background: var(--track-color);
 }
 
+<<<<<<< HEAD
 .customSlider-track.customSlider-track-0 {
   /* color of the track before the thumb */
   background: var(--main-color);
 }
+=======
+.grid-container {
+  display: grid;
+  grid-template-columns: 10vh 10vh 10vh 10vh 10vh;
+  grid-template-rows: repeat(5, 10vh);
+  background-color: white;
+  height: 50vh;
+  width: 50vh;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 0.5vh solid black;
+  width: 9.5vh;
+  height: 9.5vh;
+  font-size: 10px;
+  text-align: center;
+}
+
+.home-container {
+  padding-left: 20vh;
+  padding-right: 20vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.home-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly
+}
+
+.code-input-container {
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  justify-content: space-evenly;
+}
+
+.name-input {
+  height: 10vh;
+}
+
+.code-input {
+  margin-right: 1vw;
+}
+
+.create-room-button {
+  height: 10vh;
+} */
+>>>>>>> 1400783358be93d2f81d1a84f80955a3dd8d78d3
