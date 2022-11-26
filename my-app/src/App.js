@@ -1,6 +1,5 @@
 import Home from "./pages/home"
 import Lobby from "./pages/lobby"
-
 import React from "react"
 import { BrowserRouter as Router, Routes, Route}
     from 'react-router-dom'; 
