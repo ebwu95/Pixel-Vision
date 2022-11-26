@@ -1,15 +1,24 @@
 import React from 'react';
-
-function Lobby(props) {
+import '../lobby.css';
+import Slider from "../components/Slider"
+function Lobby() {
     return (
-        <div> 
-            <div className="code-information"> 
-                <h3> Code: </h3>
-                <h2> AAAA </h2>
+        <div>
+            <div className = "lobby-head"> 
+                <div className="code-info"> 
+                    <h4> Code: </h4>
+                    <h2> AAAA </h2>
+                </div>  
+                <h1> Settings </h1>
             </div>
-            <h1> Settings </h1>
+            <div className = "box-container">
+                <div className = "settings-box">
+                    <Slider />
+                </div>
+            </div>
         </div>
     )
 }
+
 
 export default Lobby;

@@ -43,10 +43,10 @@ code {
 }
 
 .code-input-container {
-display: flex;
-flex-direction: row;
+    display: flex;
+    flex-direction: row;
     height: 10vh;
-justify-content: space-evenly;
+    justify-content: space-evenly;
 }
 
 .name-input {

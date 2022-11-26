@@ -13,66 +13,23 @@ body {
   background: linear-gradient(90deg, rgba(44,32,255,1) 0%, rgba(0,212,255,1) 0%, rgba(0,101,250,1) 18%, rgba(105,9,121,1) 100%, rgba(11,176,5,1) 100%);
 }
 
-header {
-  text-align: center;
-  font-size: 5vw;
-  color: white;
-  font-weight: bold;
-  margin-bottom: 10vh;
+.customSlider {
+  /* max width of your slider */
+  max-width: 300px;
+  /* Optional: Only If you want to center your slider in the page */
+  margin: auto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.customSlider-track {
+  /* Top value to align your track to the center of your thumb */
+  top: 8px;
+  /* thickness of the track */
+  height: 4px;
+ /* default color of your track */
+  background: var(--track-color);
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 10vh 10vh 10vh 10vh 10vh;
-  grid-template-rows: repeat(5, 10vh);
-  background-color: white;
-  height: 50vh;
-  width: 50vh;
-}
-
-.grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 0.5vh solid black;
-  width: 9.5vh;
-  height: 9.5vh;
-  font-size: 10px;
-  text-align: center;
-}
-
-.home-container {
-  padding-left: 20vh;
-  padding-right: 20vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.home-buttons-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly
-}
-
-.code-input-container {
-  display: flex;
-  flex-direction: row;
-  height: 10vh;
-  justify-content: space-evenly;
-}
-
-.name-input {
-  height: 10vh;
-}
-
-.code-input {
-  margin-right: 1vw;
-}
-
-.create-room-button {
-  height: 10vh;
+.customSlider-track.customSlider-track-0 {
+  /* color of the track before the thumb */
+  background: var(--main-color);
 }
