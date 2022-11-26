@@ -1,5 +1,6 @@
 import React from "react"
-import Grid5x5 from "./Grid5x5"
+import '../home.css';
+import Grid5x5 from "../components/Grid5x5"
 
 function Home() {
     return (

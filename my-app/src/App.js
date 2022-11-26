@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import Home from "./components/Home"
+import Home from "./pages/home"
 import React from "react"
 
 function App() {
