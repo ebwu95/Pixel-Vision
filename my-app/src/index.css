@@ -1,8 +1,45 @@
-* {
-  margin: 0;
-  padding: 0;
-}
+html,
 body {
+  height: 100%;
+  /* background-image: url(https://images.wondershare.com/filmora/article-images/2021/aesthetic-pixel-background.jpg); */
+  background-image: url(https://wallpaperaccess.com/full/2802541.png);
+  background-repeat: repeat;
+  background-size: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100%;
+}
+
+container-fluid {
+  height: 100%;
+}
+
+.vw {
+  width: 30vw;
+}
+
+.vh {
+  height: 30vw;
+}
+
+.h-40 {
+  height: 40%;
+}
+
+.title {
+  /* font-weight: bold; */
+  font-size: 8rem;
+  text-shadow: 4px 4px 7px black;
+}
+
+
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -75,4 +112,4 @@ code {
 
 .create-room-button {
   height: 10vh;
-}
+} */
