@@ -20,21 +20,41 @@ import React from "react"
 
 function Grid5x5() {
   return (
-    <div className="border border-1 m-5 w-80 h-100">
-      <div className="row">
-        <span className="border border-3 border-dark col vw-9.5 vh-9.5"></span>
-        <span className="border border-3 border-dark col vw-9.5 vh-9.5"></span>
-        <span className="border border-3 border-dark col vw-9.5 vh-9.5"></span>
+    <div className="vw vh d-flex flex-column">
+      <div className="row flex-fill d-flex flex-nowrap">
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
       </div>
-      <div className="row w-10">
-        <span className="border border-3 border-dark col vw-9.5 vh-9.5"></span>
-        <span className="border border-3 border-dark col vw-9.5 vh-9.5"></span>
-        <span className="border border-3 border-dark col vw-9.5 vh-9.5"></span>
+      <div className="row flex-fill d-flex flex-nowrap">
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-dark col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-dark col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
       </div>
-      <div className="row w-10">
-        <span className="border border-3 border-dark col vw-9.5 vh-9.5"></span>
-        <span className="border border-3 border-dark col vw-9.5 vh-9.5"></span>
-        <span className="border border-3 border-dark col vw-9.5 vh-9.5"></span>
+      <div className="row flex-fill d-flex flex-nowrap">
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+      </div>
+      <div className="row flex-fill d-flex flex-nowrap">
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-dark col flex-fill"></span>
+        <span className="border border-4 border-dark bg-dark col flex-fill"></span>
+        <span className="border border-4 border-dark bg-dark col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+      </div>
+      <div className="row flex-fill d-flex flex-nowrap">
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
+        <span className="border border-4 border-dark bg-white col flex-fill"></span>
       </div>
     </div>
   )

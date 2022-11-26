@@ -3,24 +3,31 @@ import Grid5x5 from "./Grid5x5"
 
 function Home() {
     return (
-        <div className="h-100 position-absolute container-fluid bg-primary d-flex flex-column">
-            <header className="text-center h1"> Pixel Vision </header>
-            <div className="row flex-fill">
-                <div className="col-sm-8 bg-dark">
+        <div className="h-100 position-absolute container-fluid d-flex flex-column">
+            <header className="text-center display-1 font-weight-bold text-white title">Pixel Vision </header>
+            <div className="row flex-fill justify-content-center">
+                <div className="col-sm-5 d-flex justify-content-center align-items-center">
                     <Grid5x5 />
                 </div>
 
-                <div className="col-sm-4 bg-danger d-flex flex-column justify-content-center">
-                    <div className="border border-1 mx-5">
-                        <div className="input-group p-2">
-                            <span class="input-group-text px-3">NAME</span>
-                            <input className="form-control" type="text" />
+                <div className="col-sm-5 d-flex flex-column justify-content-center">
+                    <div className="h-40 bg-light rounded shadow mx-5 d-flex flex-column justify-content-around">
+                        <div className="">
+                            <div className="input-group input-group-lg p-2">
+                                <span class="input-group-text px-3">NAME</span>
+                                <input className="form-control" type="text" />
+                            </div>
+                            <div className="input-group input-group-lg p-2">
+                                <input className="form-control" type="text" placeholder="CODE" />
+                                <button className="btn btn-success" type="button">JOIN</button>
+                            </div>
                         </div>
-                        <div className="input-group p-2">
-                            <input className="form-control" type="text" placeholder="CODE" />
-                            <button className="btn btn-success" type="button">JOIN</button>
+
+
+                        <div className="d-grid">
+                            <input className="mt-2 create-room-button btn btn-lg btn-success mx-2 w-auto" type="button" value="CREATE ROOM" />
                         </div>
-                        <input className="create-room-button btn btn-outline-success" type="button" value="CREATE ROOM" />
+
                     </div>
                 </div>
             </div>
