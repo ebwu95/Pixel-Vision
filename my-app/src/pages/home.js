@@ -14,7 +14,7 @@ function Home() {
                     <div className="h-40 bg-light rounded shadow mx-5 d-flex flex-column justify-content-around">
                         <div className="">
                             <div className="input-group input-group-lg p-2">
-                                <span class="input-group-text px-3">NAME</span>
+                                <span className="input-group-text px-3">NAME</span>
                                 <input className="form-control" type="text" />
                             </div>
                             <div className="input-group input-group-lg p-2">
