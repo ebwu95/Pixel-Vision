@@ -1,13 +1,11 @@
-import React from 'react';
-import '../lobby.css';
-import Slider from "../components/Slider"
-function Lobby() {
-    return (
+import React from "react"
+function LobbyLayout(props) {
+   return (
         <div className="h-100 d-flex flex-column align-items-center justify-content-center">
             <div className="lobby-head">
                 <div className="code-info position-absolute m-3 top-0 start-0 display-1 font-weight-bold text-white title">
                     <h4> Code: </h4>
-                    <h2> AAAA </h2>
+                    <h2> {props.id} </h2>
                 </div>
             </div>
             {/* <div className="box-container">
@@ -81,6 +79,4 @@ function Lobby() {
         </div>
     )
 }
-
-
-export default Lobby;
+export default LobbyLayout
