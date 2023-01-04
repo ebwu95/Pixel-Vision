@@ -3,7 +3,8 @@ import React from 'react';
 import LobbyLayout from '../../components/LobbyLayout'
 export default function lob2() {
     const router = useRouter()
-    return <LobbyLayout id={router.query.id}/>
+    let lobbyID = router.query.id === undefined ? router.query.id : router.query.id.slice(0, -3)
+    return <LobbyLayout id={lobbyID} />
 }
 
 // export function getAllLobbies(){

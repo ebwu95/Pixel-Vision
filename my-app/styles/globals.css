@@ -20,6 +20,10 @@ container-fluid {
   height: 100%;
 }
 
+#__next {
+  height: 100%;
+}
+
 .vw {
   width: 30vw;
 }
@@ -60,7 +64,7 @@ body {
   top: 8px;
   /* thickness of the track */
   height: 4px;
- /* default color of your track */
+  /* default color of your track */
   background: var(--track-color);
 }
 
