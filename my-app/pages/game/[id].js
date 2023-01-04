@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router'
 import React from 'react';
 import LobbyLayout from '../../components/LobbyLayout'
-export default function lob2() {
+export default function Lobby() {
     const router = useRouter()
-    let lobbyID = router.query.id === undefined ? router.query.id : router.query.id.slice(0, -3)
-    return <LobbyLayout id={lobbyID} />
+    return <LobbyLayout id={router.query.id} />
 }
 
 // export function getAllLobbies(){
@@ -12,7 +11,7 @@ export default function lob2() {
 // }
 
 // export async function getStaticPaths() {
-//     const paths = getAllLobbies();
+//     const paths = getAl  lLobbies();
 //     return {paths, fallback: false,};
 // }
 
