@@ -18,7 +18,7 @@ function LobbyLayout(props) {
 
 
             {/* Settings Box */} {/* Lobby Name, Max Players, drawing time, #rounds, custom words */}
-            <div className="h-75 ps-3 pe-3 bg-light rounded shadow mx-5 col-sm-5 d-flex flex-column justify-content-around">
+            <div className="h-75 px-3 pb-2 bg-light rounded shadow mx-5 col-sm-5 d-flex flex-column justify-content-around">
                 <h1 className="text-center"> Settings </h1>
                 <div className="h-75 d-flex flex-column justify-content-between">
                     <div className="h-75 p-2 d-flex flex-column justify-content-between">
