@@ -2,10 +2,13 @@ import { useRouter } from 'next/router'
 import { io } from "socket.io-client"
 import React from 'react';
 import LobbyLayout from '../../components/LobbyLayout'
-
+import { useState, useEffect } from 'react';
 export default function Lobby({socket}) {
-    console.log(socket.id);
+    const [players, setPlayers] = useState([]);
     const router = useRouter()
+    useEffect(() => {
+        socket.on('update_room')
+    })
     return <LobbyLayout id={router.query.id} />
 }
 

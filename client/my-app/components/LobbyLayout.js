@@ -79,7 +79,7 @@ function LobbyLayout(props) {
             </div>
 
             <div className="h-75 bg-light rounded shadow col-sm-3 d-flex flex-column justify-content-around">
-                <PlayerList />
+                <PlayerList players = {["nerd", "man", "lol"]}/>
             </div>
 
         </div>
