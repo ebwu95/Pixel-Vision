@@ -33,6 +33,10 @@ MongoClient.connect(MONGODB_URI, function(err, db) {
     });
     socket.on('join_lobby', (data) => {
       const { name, lobby } = data; 
+      collection.updateOne({ code: lobby },  { $push: { players: name } }, function(err, res) {
+        if (err) throw err;
+        socket.join(socket.id);
+      })
       socket.join(lobby);  //join room
     });
   });
