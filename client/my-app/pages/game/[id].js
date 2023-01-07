@@ -3,8 +3,8 @@ import { io } from "socket.io-client"
 import React from 'react';
 import LobbyLayout from '../../components/LobbyLayout'
 
-const socket = io("http://localhost:3000")
-export default function Lobby() {
+export default function Lobby({socket}) {
+    console.log(socket.id);
     const router = useRouter()
     return <LobbyLayout id={router.query.id} />
 }

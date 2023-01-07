@@ -6,10 +6,15 @@ function Home({name, lobby, setName, setLobby, socket}) {
     
     const router = useRouter();
     const joinLobby = () => {
-        console.log("lobby")
         if (lobby !== '' && name !== '') {
           socket.emit('join_lobby', { name, lobby});
           router.push(`/game/${lobby}`);
+        }
+    }; 
+    const createLobby = () => {
+        if (name !== '') {
+          socket.emit('create_lobby', { name });
+          router.push(`/game/${socket.id}`);
         }
     }; 
     return (
@@ -35,7 +40,7 @@ function Home({name, lobby, setName, setLobby, socket}) {
 
                         <Link style={{ color: 'inherit', textDecoration: 'inherit'}} href="/game/ABCD"> 
                           <div className="d-grid">
-                              <input className="mt-2 create-room-button btn btn-lg btn-success mx-2 w-auto" type="button" value="CREATE ROOM" />
+                              <input className="mt-2 create-room-button btn btn-lg btn-success mx-2 w-auto" type="button" value="CREATE ROOM" onClick={createLobby}/>
                           </div>
                         </Link>
 
