@@ -2,9 +2,10 @@ import React from 'react'
 import PlayerListTile from './PlayerListTile.js'
 
 function PlayerList({ players }) {
+    console.log(players)
     return (
         <div className="h-100 pt-1 d-flex flex-column justify-content-start">
-            {players.map((player) => { <PlayerListTile username={player} /> })}
+            {players.map((player) => { return (<PlayerListTile username={player} />) })}
 
         </div>
     )
