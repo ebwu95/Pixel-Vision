@@ -5,7 +5,7 @@ import React from "react";
 function Leaderboard() {
     return (
         <div class="container-fluid mt-4 row justify-content-center">
-            <header>LeaderBoard </header>
+            <header className="text-center display-1 font-weight-bold text-white title">LeaderBoard </header>
             <table class="table table-hover table-dark table-responsive caption-top w-50 text-center">
                 <caption ><h1 class="text-white">Players</h1></caption>
                 <thead>

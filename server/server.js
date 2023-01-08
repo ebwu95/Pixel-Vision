@@ -1,13 +1,20 @@
+require('dotenv').config()
+
 const express = require('express');
 const app = express();
 const http = require('http');
 const cors = require('cors');
 const { Server } = require('socket.io');
-const MONGODB_URI = "mongodb+srv://client:pogger124@pixvis.gryvtqp.mongodb.net/?retryWrites=true&w=majority"
+if (!process.env.MONGODB_URI) {
+  throw new Error("Did not provide MongoDB_URI")
+}
+const MONGODB_URI = process.env.MONGODB_URI
 const MONGODB_DB = "PixelVision";
 const MongoClient = require('mongodb').MongoClient;
 const server = http.createServer(app);
+
 app.use(cors());
+
 const io = new Server(server, {
   cors: {
     origin: 'http://localhost:3000',
