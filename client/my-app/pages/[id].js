@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import GameGrid from '../../components/GameGrid'
-function Gamestate() {
+import GameGrid from '../components/GameGrid'
+function Game() {
     const [colour, setColour] = useState('white')
 
     return (
@@ -65,4 +65,4 @@ function Gamestate() {
 }
 
 
-export default Gamestate
+export default Game;

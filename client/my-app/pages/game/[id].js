@@ -10,9 +10,13 @@ export default function Lobby({ socket }) {
             setPlayers(data.players);
             console.log(data.players);
         })
+        socket.on('start_game', () => {
+            console.log("moving!");
+            router.push(`/${router.query.id}`);
+        }) 
     }, [socket]);
     const isCreator = socket.id == router.query.id
-    return <LobbyLayout id={router.query.id} isCreator={isCreator} players={players} />
+    return <LobbyLayout socket={socket} id={router.query.id} isCreator={isCreator} players={players} />
 }
 
 // export function getAllLobbies(){

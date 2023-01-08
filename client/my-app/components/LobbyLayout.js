@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import PlayerList from "./PlayerList.js"
 
-function LobbyLayout({ id, isCreator, players }) {
+function LobbyLayout({socket, id, isCreator, players }) {
     return (
         <div className="h-100 d-flex align-items-center justify-content-center">
             <div className="lobby-head">
@@ -16,7 +16,7 @@ function LobbyLayout({ id, isCreator, players }) {
                 </div>
             </div> */}
 
-            {isCreator ? <SettingsPane /> : null}
+            {isCreator ? <SettingsPane socket={socket} lobby={id} players={players}/> : null}
 
             <div className="h-75 bg-light rounded shadow col-sm-3 d-flex flex-column justify-content-around overflow-auto">
                 <PlayerList players={players} />
@@ -24,10 +24,16 @@ function LobbyLayout({ id, isCreator, players }) {
 
         </div>
     )
-}
+};
 
 {/* Settings Pane */ } {/* Lobby Name, Max Players, drawing time, #rounds, custom words */ }
-const SettingsPane = () => {
+function SettingsPane({ socket, lobby, players }) {
+    const startGame = () => {
+        if (players.length >= 2) {
+            console.log(lobby);
+            socket.emit('start_game_req', { lobby });
+        }
+    }
     return (
         <div className="h-75 px-3 pb-2 bg-light rounded shadow mx-5 col-sm-5 d-flex flex-column justify-content-around">
             <h1 className="text-center"> Settings </h1>
@@ -83,7 +89,7 @@ const SettingsPane = () => {
 
 
                 <div className="d-grid">
-                    <input className="mt-2 create-room-button btn btn-lg btn-success mx-2 w-auto" type="button" value="CREATE ROOM" />
+                    <input className="mt-2 create-room-button btn btn-lg btn-success mx-2 w-auto" type="button" value="CREATE ROOM" onClick={startGame}/>
                 </div>
 
             </div>

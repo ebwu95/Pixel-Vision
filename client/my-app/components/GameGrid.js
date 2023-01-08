@@ -27,7 +27,7 @@ const GameGrid = ({width, height, colour}) => {
             cols.push(
                 <td
                   key={j}
-                  style={{ backgroundColor: boxColor}}
+                  style={{ border: '5px solid black', backgroundColor: boxColor, aspectRatio: 1}}
                   onClick={() => toggleBox(i, j)}
                   onMouseEnter={() => isMouseDown && toggleBox(i, j)}
                     onMouseDown={() => setIsMouseDown(true)}
@@ -41,7 +41,7 @@ const GameGrid = ({width, height, colour}) => {
     }
 
     return (
-        <table className="h-100 w-100" style={{'table-layout':'fixed', 'border':'1px solid black'}}>
+        <table className="h-100 w-100" style={{'table-layout':'fixed', 'border':'5px solid black'}}>
         <tbody>{rows}</tbody>
         </table>
     );

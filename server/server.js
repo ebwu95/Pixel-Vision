@@ -62,6 +62,11 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
       })
       //join room
     });
+    socket.on('start_game_req', async (data) => {
+      const { lobby } = data;
+      console.log(data)
+      io.in(lobby).emit('start_game')
+    }) 
   });
 });
 
