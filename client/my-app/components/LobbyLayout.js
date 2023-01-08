@@ -1,13 +1,13 @@
 import React from "react"
 import PlayerList from "./PlayerList.js"
 
-function LobbyLayout(props) {
+function LobbyLayout({id, players}) {
     return (
         <div className="h-100 d-flex align-items-center justify-content-center">
             <div className="lobby-head">
                 <div className="code-info position-absolute m-3 top-0 start-0 display-1 font-weight-bold text-white title">
                     <h4> Code: </h4>
-                    <h2> {props.id} </h2>
+                    <h2> {id} </h2>
                 </div>
             </div>
             {/* <div className="box-container">
@@ -79,7 +79,7 @@ function LobbyLayout(props) {
             </div>
 
             <div className="h-75 bg-light rounded shadow col-sm-3 d-flex flex-column justify-content-around overflow-auto">
-                <PlayerList players={["Raymond", "Evan", "Evan", "Evan", "Evan", "Evan", "Evan", "Evan", "Evan", "Evan"]} />
+                <PlayerList players={players} />
             </div>
 
         </div>

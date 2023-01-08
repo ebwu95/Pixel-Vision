@@ -2,9 +2,10 @@ import '../styles/globals.css'
 import Head from "next/head";
 import { useState } from 'react'; 
 import Script from "next/script";
-import 'bootstrap/dist/css/bootstrap.css'
-import io from 'socket.io-client'; 
+import 'bootstrap/dist/css/bootstrap.css';
+import io from 'socket.io-client';
 const socket = io.connect('http://localhost:4000');
+
 function MyApp({ Component, pageProps }) {
   const [name, setName] = useState('');
   const [lobby, setLobby] = useState(''); 
