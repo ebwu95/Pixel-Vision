@@ -1,7 +1,7 @@
 
 # Pixel Vision
 
-Pixel Vision is a real-time multiplayer game where players are shown a pixelated image to memorize. After a given time period, The player who recreates the image most accurately wins.
+Pixel Vision is a real-time multiplayer game where players must memorize pixelated image within a short time period. Compete against friends to see who can recreate the image most accurately!
 
 
 ## Authors
