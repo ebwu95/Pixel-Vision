@@ -44,7 +44,7 @@ function Home({ name, lobby, setName, setLobby, socket }) {
                     <div className="h-40 p-4 bg-light rounded shadow mx-5 d-flex flex-column justify-content-around">
                         <div className="input-group input-group-lg">
                             <span className="input-group-text">USERNAME</span>
-                            <input className="form-control" type="text" onChange={(e) => setName(e.target.value)} />
+                            <input className="form-control" type="text" maxlength="15" onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className="input-group input-group-lg">
                             <input className="form-control" type="text" placeholder="CODE" onChange={(e) => setLobby(e.target.value)} />

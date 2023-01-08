@@ -1,10 +1,20 @@
 import React from 'react'
 import PlayerListTile from './PlayerListTile.js'
 
+const colorList = ["red", "darkorange", "gold", "lime", "turquoise", "indigo", "purple", "mediumvioletred"]
+const avatarList = ["😀", "😎", "🙁", "😨", "😳", "🤡", "😈", "💀"]
+
 function PlayerList({ players }) {
+    let listIndex = -1
     return (
-        <div className="h-100 pt-1 d-flex flex-column justify-content-start">
-            {players.map((player) => { return (<PlayerListTile username={player} />) })}
+        <div className="h-100 d-flex flex-column justify-content-start overflow-auto list-group list-group-flush">
+            {players.map((player) => {
+                listIndex = (listIndex + 1) % 8
+                return (
+                    <PlayerListTile username={player} color={colorList[listIndex]} avatar={avatarList[listIndex]}
+                        isAdmin={listIndex == 0} />
+                )
+            })}
 
         </div>
     )
