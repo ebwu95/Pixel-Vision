@@ -20,9 +20,7 @@ function Game({name, players, socket}) {
     }, [timer])
 
     //function to generate random grid
-    const generateGrid = () => {
-        const height = Math.floor(Math.random() * 5) + 1
-        const width = Math.floor(Math.random() * 5) + 1
+    const generateGrid = (height, width) => {
         const colours = ['red', 'green', 'yellow', 'blue', 'black']
         setBoxes(() => {
             const rows = []
@@ -40,11 +38,12 @@ function Game({name, players, socket}) {
     // 2d State with colour of each box
     const [boxes, setBoxes] = useState(() => {
         const rows = []
-        for (let i = 0; i < 3; i++) {
-        rows.push(new Array(3).fill('white'))
+        for (let i = 0; i < 5; i++) {
+        rows.push(new Array(5).fill('white'))
         }
         return rows
     })
+    
     
 
     return (
@@ -58,7 +57,7 @@ function Game({name, players, socket}) {
                 </div>
         </div>
         <div className="h-100 d-flex flex-row align-items-center justify-content-center">
-            <button onClick={() => generateGrid()}>TEMP BUTTON</button>
+            <button onClick={() => generateGrid(5, 5)}>TEMP BUTTON</button>
             <div className="bg-light bg-light mx-3 rounded shadow col-sm-6 d-flex flex-column justify-content-center align-items-center"
                 style={{height: "75vh", width: "75vh"}}>
                 <GameGrid height={boxes.length} width={boxes[0].length} colour={colour} boxes={boxes} setBoxes={setBoxes} />
