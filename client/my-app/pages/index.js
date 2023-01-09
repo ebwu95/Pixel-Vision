@@ -40,8 +40,8 @@ function Home({ name, lobby, setName, setLobby, socket }) {
                     <Grid5x5 />
                 </div>
 
-                <div className="col-sm-5 d-flex flex-column justify-content-center">
-                    <div className="h-40 p-4 bg-light rounded shadow mx-5 d-flex flex-column justify-content-around">
+                <div className="userinfo-div col-sm-5 d-flex flex-column justify-content-center">
+                    <div className="userinfo-pane h-40 p-4 bg-light rounded shadow mx-5 d-flex flex-column justify-content-around">
                         <div className="input-group input-group-lg">
                             <span className="input-group-text">USERNAME</span>
                             <input className="form-control" type="text" maxlength="15" onChange={(e) => setName(e.target.value)} />

@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 MongoClient.connect(MONGODB_URI, async function (err, db) {
   if (err) throw err;
   var dbo = db.db(MONGODB_DB);
-  var collection = dbo.collection("lobbies"); 
+  var collection = dbo.collection("lobbies");
   io.on('connection', async (socket) => {
     console.log(`User connected ${socket.id}`);
     console.log(io.sockets.adapter.rooms);
@@ -47,7 +47,7 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
       const lobbiesFound = collection.countDocuments({ code: lobby }).then(() => {
         if (lobbiesFound == 0) {
           socket.emit('invalid_lobby')
-        } 
+        }
         else {
           collection.findOneAndUpdate({ code: lobby }, { $push: { players: name } }, { returnDocument: 'after' }, (err, res) => {
             socket.emit('valid_lobby', { lobby });
@@ -66,7 +66,7 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
       const { lobby } = data;
       console.log(data)
       io.in(lobby).emit('start_game')
-    }) 
+    })
   });
 });
 
