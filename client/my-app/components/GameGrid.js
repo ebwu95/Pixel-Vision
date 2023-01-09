@@ -1,16 +1,8 @@
 import React, { useState } from 'react'
 
-const GameGrid = ({width, height, colour}) => {
+const GameGrid = ({width, height, colour, boxes, setBoxes}) => {
     const [isMouseDown, setIsMouseDown] = useState(false)
-    console.log(isMouseDown);
-    // 2d State with colour of each box
-    const [boxes, setBoxes] = useState(() => {
-        const rows = []
-        for (let i = 0; i < height; i++) {
-        rows.push(new Array(width).fill('white'))
-        }
-        return rows
-    })
+    
     // Function to toggle the state of a box
     const toggleBox = (row, col) => {
         setBoxes(prevBoxes => {
