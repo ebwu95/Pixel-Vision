@@ -15,7 +15,7 @@ function Home({ name, lobby, setName, setLobby, socket }) {
         if (name !== '') {
             const id = socket.id;
             socket.emit('create_lobby', { name, id });
-            router.push(`/game/${socket.id}`);
+            router.replace(`/game/${socket.id}`);
         }
     };
 

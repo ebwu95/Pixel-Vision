@@ -29,7 +29,7 @@ function LobbyLayout({socket, id, isCreator, players }) {
 {/* Settings Pane */ } {/* Lobby Name, Max Players, drawing time, #rounds, custom words */ }
 function SettingsPane({ socket, lobby, players }) {
     const startGame = () => {
-        if (players.length >= 2) {
+        if (players.length >= 1) {
             console.log(lobby);
             socket.emit('start_game_req', { lobby });
         }

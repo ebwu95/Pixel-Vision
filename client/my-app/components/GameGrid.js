@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 const GameGrid = ({width, height, colour}) => {
     const [isMouseDown, setIsMouseDown] = useState(false)
+    console.log(isMouseDown);
     // 2d State with colour of each box
     const [boxes, setBoxes] = useState(() => {
         const rows = []
@@ -26,8 +27,9 @@ const GameGrid = ({width, height, colour}) => {
             const boxColor = boxes[i][j]
             cols.push(
                 <td
+                  className="gh gw"
                   key={j}
-                  style={{ border: '5px solid black', backgroundColor: boxColor, aspectRatio: 1}}
+                  style={{ border: '5px solid black', backgroundColor: boxColor }}
                   onClick={() => toggleBox(i, j)}
                   onMouseEnter={() => isMouseDown && toggleBox(i, j)}
                     onMouseDown={() => setIsMouseDown(true)}
@@ -41,7 +43,7 @@ const GameGrid = ({width, height, colour}) => {
     }
 
     return (
-        <table className="h-100 w-100" style={{'table-layout':'fixed', 'border':'5px solid black'}}>
+        <table className="square100" style={{'table-layout':'fixed', 'border':'5px solid black'}}>
         <tbody>{rows}</tbody>
         </table>
     );
