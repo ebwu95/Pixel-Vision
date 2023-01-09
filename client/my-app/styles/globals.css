@@ -4,12 +4,13 @@ body {
   /* background-image: url(https://images.wondershare.com/filmora/article-images/2021/aesthetic-pixel-background.jpg); */
   background-image: url(https://wallpaperaccess.com/full/2802541.png);
   background-repeat: repeat;
-  background-size: 100%;
+  background-size: cover;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: auto;
 }
 
 #root {
@@ -22,6 +23,25 @@ container-fluid {
 
 #__next {
   height: 100%;
+}
+
+.userinfo-div {
+  min-width: 500px;
+}
+
+.userinfo-pane {
+  min-height: 280px;
+}
+
+.p-list {
+  min-width: 300px;
+  min-height: 500px;
+}
+
+.settings-pane {
+  min-width: 500px;
+  min-height: 700px;
+  overflow-y: auto;
 }
 
 .vw {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import PlayerList from "./PlayerList.js"
 
-function LobbyLayout({socket, id, isCreator, players }) {
+function LobbyLayout({ socket, id, isCreator, players }) {
     return (
         <div className="h-100 d-flex align-items-center justify-content-center">
             <div className="lobby-head">
@@ -16,7 +16,8 @@ function LobbyLayout({socket, id, isCreator, players }) {
                 </div>
             </div> */}
 
-            {isCreator ? <SettingsPane socket={socket} lobby={id} players={players}/> : null}
+            {/* {isCreator ? <SettingsPane socket={socket} lobby={id} players={players}/> : null} */}
+            <SettingsPane socket={socket} lobby={id} players={players} />
 
             <div className="h-75 bg-light rounded shadow col-sm-3 d-flex flex-column justify-content-around overflow-auto">
                 <PlayerList players={players} />
@@ -35,7 +36,7 @@ function SettingsPane({ socket, lobby, players }) {
         }
     }
     return (
-        <div className="h-75 px-3 pb-2 bg-light rounded shadow mx-5 col-sm-5 d-flex flex-column justify-content-around">
+        <div className="settings-pane h-75 px-3 pb-2 bg-light rounded shadow mx-5 col-sm-5 d-flex flex-column justify-content-around">
             <h1 className="text-center"> Settings </h1>
             <div className="h-75 d-flex flex-column justify-content-between">
                 <div className="h-75 p-2 d-flex flex-column justify-content-between">
@@ -89,7 +90,7 @@ function SettingsPane({ socket, lobby, players }) {
 
 
                 <div className="d-grid">
-                    <input className="mt-2 create-room-button btn btn-lg btn-success mx-2 w-auto" type="button" value="CREATE ROOM" onClick={startGame}/>
+                    <input className="mt-2 create-room-button btn btn-lg btn-success mx-2 w-auto" type="button" value="CREATE ROOM" onClick={startGame} />
                 </div>
 
             </div>
