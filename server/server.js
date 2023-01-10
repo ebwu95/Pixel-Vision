@@ -25,6 +25,18 @@ app.get('/', (req, res) => {
   res.send(io.sockets.adapter.rooms);
 })
 
+const verify = (guesses, answers) => {
+  let score = 0;
+  for (let i = 0; i < guesses.length; i++) {
+    for (let j = 0; j < guesses[0].length; j++) {
+      if (guesses[i][j] == answers[i][j]) {
+        score += 100;
+      }
+    }
+  }
+  return score;
+}
+
 MongoClient.connect(MONGODB_URI, async function (err, db) {
   if (err) throw err;
   var dbo = db.db(MONGODB_DB);
@@ -63,10 +75,59 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
       //join room
     });
     socket.on('start_game_req', async (data) => {
-      const { lobby } = data;
+      const { lobby, score } = data;
       console.log(data)
-      io.in(lobby).emit('start_game')
+      const colours = ['red', 'green', 'yellow', 'blue', 'black']
+      const rows = []
+      for (let i = 0; i < 3; i++) {
+          const column = []
+          for (let j = 0; j < 3; j++){
+              const ind = Math.floor(Math.random() * 5)
+              column.push(colours[ind]) 
+          }
+          rows.push(column)
+      }
+      receipt = new Array(score.length).fill(false)
+      collection.updateOne({code: lobby }, {$set: {round : 1, boxes: rows, scores: score, received: receipt}}).then(() => {
+          io.in(lobby).emit('start_round_0', { round: 1, scores: score, boxes: rows });
+      })
     })
+    socket.on('end_round_0', async (data) => {
+      console.log('end_round_0_received');
+      const rows = []
+      for (let i = 0; i < 3; i++) {
+          rows.push(new Array(3).fill('white'))
+      }
+      io.in(data.lobby).emit('start_round_1', { round: data.round, boxes: rows });
+    });
+    socket.on('end_round_1', async (data) => {
+      console.log("end_round_1 received");
+      collection.findOne({code: data.lobby}, (err, res) => {
+        if (err) throw err;
+        const scoreDelta = verify(data.guess, res.boxes);
+        var score = res.scores;
+        var receipt = res.received;
+        receipt[data.player] = true;
+        score[data.player] += scoreDelta;
+        const done = receipt.every(value => value);
+        const colours = ['red', 'green', 'yellow', 'blue', 'black']
+        const rows = []
+        for (let i = 0; i < 3; i++) {
+            const column = []
+            for (let j = 0; j < 3; j++){
+                const ind = Math.floor(Math.random() * 5)
+                column.push(colours[ind]) 
+            }
+            rows.push(column)
+        }
+        if (done) {
+          receipt = receipt.fill(false);
+        }
+        collection.updateOne({code: data.lobby }, {$set: {round : data.round, boxes: rows, scores: score, received: receipt}}).then(() => {
+          io.in(data.lobby).emit('start_round_0', { round: data.round, boxes: rows, scores: score});
+        });
+      });
+    });
   });
 });
 

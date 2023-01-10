@@ -32,7 +32,8 @@ function SettingsPane({ socket, lobby, players }) {
     const startGame = () => {
         if (players.length >= 1) {
             console.log(lobby);
-            socket.emit('start_game_req', { lobby });
+            const score = new Array(players.length).fill(0)
+            socket.emit('start_game_req', { lobby, score });
         }
     }
     return (
