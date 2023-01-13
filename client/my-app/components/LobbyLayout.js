@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import PlayerList from "./PlayerList.js"
-
 function LobbyLayout({ socket, id, isCreator, players }) {
     return (
         <div className="h-100 d-flex align-items-center justify-content-center">
