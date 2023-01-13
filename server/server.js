@@ -93,7 +93,6 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
       })
     })
     socket.on('end_round_0', async (data) => {
-      console.log('end_round_0_received');
       const rows = []
       for (let i = 0; i < 3; i++) {
           rows.push(new Array(3).fill('white'))
