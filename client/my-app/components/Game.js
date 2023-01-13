@@ -7,10 +7,6 @@ function Game({boxes, setBoxes, score, timeLimit, isCreator, round, playerID, pl
     const router = useRouter()
     console.log(colour);
     const [timer, setTimer] = useState(timeLimit);
-    if (round == 2) {
-        console.log("YOLO BRO")
-        console.log(timer);
-    }
     useEffect(() => {
         const interval = setInterval(() => {
             if (timer == 0) {
