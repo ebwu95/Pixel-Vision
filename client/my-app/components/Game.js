@@ -2,7 +2,7 @@ import GameGrid from './GameGrid'
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import ScoreList from './ScoreList';
-function Game({boxes, setBoxes, score, timeLimit, isCreator, round, playerID, players, socket,}) {
+function Game({boxes, setBoxes, score, timeLimit, isCreator, round, playerID, players, socket}) {
     const [colour, setColour] = useState('white')
     const [displayedRound, setDisplayedRound] = useState(Math.ceil(round/2));
     //the data.round increments during the whiteboard time, so the correct displayed round is ceil(data.round/2)

@@ -47,7 +47,7 @@ export default function Lobby({ name, socket }) {
     console.log("score:" + score);//score might work for final leaderboard at the end?
     
     if (endGame) {
-        return <Leaderboard/>
+        return <Leaderboard players={players} scores={score}/>
     }
     if (inGame) {
         return <Game score={score} boxes={boxes} setBoxes={setBoxes} round={round} timeLimit={5 * round} isCreator={isCreator} playerID={players.findIndex((player) => player === name)} socket={socket} players={players}/> 
