@@ -2,12 +2,16 @@ import GameGrid from './GameGrid'
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import ScoreList from './ScoreList';
-function Game({boxes, setBoxes, score, timeLimit, isCreator, round, playerID, players, socket}) {
+function Game({boxes, setBoxes, score, timeLimit, isCreator, round, playerID, players, socket,}) {
     const [colour, setColour] = useState('white')
+    const [displayedRound, setDisplayedRound] = useState(Math.ceil(round/2));
+    //the data.round increments during the whiteboard time, so the correct displayed round is ceil(data.round/2)
+
     const router = useRouter()
     console.log(colour);
     const [timer, setTimer] = useState(timeLimit);
     useEffect(() => {
+        setDisplayedRound(Math.ceil(round/2))
         const interval = setInterval(() => {
             if (timer == 0) {
                 if (round % 2) { //memory round
@@ -23,7 +27,7 @@ function Game({boxes, setBoxes, score, timeLimit, isCreator, round, playerID, pl
             setTimer(timer => timer - 1) 
         }, 1000)
         return () => clearInterval(interval);
-    }, [timer])
+    }, [timer, displayedRound])
 
     return (
     <>
@@ -38,6 +42,7 @@ function Game({boxes, setBoxes, score, timeLimit, isCreator, round, playerID, pl
         <div className="h-100 d-flex flex-row align-items-center justify-content-center">
             <div className="bg-light bg-light mx-3 rounded shadow col-sm-6 d-flex flex-column justify-content-center align-items-center"
                 style={{height: "75vh", width: "75vh"}}>
+                <h1>Round: {displayedRound}</h1>
                 <GameGrid height={boxes.length} width={boxes[0].length} colour={colour} boxes={boxes} setBoxes={setBoxes} />
             </div>
             <div className="colours col-5 d-flex flex-row justify-content-center gap-4 position-absolute top-0 p-5">

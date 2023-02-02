@@ -3,6 +3,7 @@ import React from 'react';
 import LobbyLayout from '../../components/LobbyLayout'
 import { useState, useEffect } from 'react';
 import Game from '../../components/Game'
+import Leaderboard from '../leaderboard';
 export default function Lobby({ name, socket }) {
     const router = useRouter()
     var [players, setPlayers] = useState([]);
@@ -10,27 +11,49 @@ export default function Lobby({ name, socket }) {
     const [boxes, setBoxes] = useState([]);
     const [round, setRound] = useState(0);
     const [score, setScore] = useState(new Array(players.length).fill(0));
+    const [endGame, setEndGame] = useState(false);
+    const maxRounds = 1;
+
+    //updates number of players
     useEffect(() => {
         socket.on('update_lobby', (data) => {
             setPlayers(data.players);
-        })
+        });
+
+        //note:
+        //game starts on round_0
+        //cycles like: round_0 --> round_1 --> round_0 --> round_1 ....
+
+        //tell client to start game
         socket.on('start_round_0', (data) => {
+            setScore(data.scores)
+            if (data.round == 2*maxRounds+1) {//data.round will always be a odd number starting from 3 and increase by 2
+                setEndGame(true);
+            }
             setRound(data.round);
             setBoxes(data.boxes);
             setScore(data.scores)
             setInGame(true);
-        }) 
+        }); 
+
+        //makes new round
         socket.on('start_round_1', (data) => {
             setRound(data.round);
             setBoxes(data.boxes);
-        })
+        });
     }, [socket]);
     const isCreator = socket.id == router.query.id
+
+    console.log("score:" + score);//score might work for final leaderboard at the end?
     
+    if (endGame) {
+        return <Leaderboard/>
+    }
     if (inGame) {
-        return <Game score={score} boxes={boxes} setBoxes={setBoxes} round={round} timeLimit={5 * round} isCreator={isCreator} playerID={players.findIndex((player) => player === name)} socket={socket} players={players} /> 
+        return <Game score={score} boxes={boxes} setBoxes={setBoxes} round={round} timeLimit={5 * round} isCreator={isCreator} playerID={players.findIndex((player) => player === name)} socket={socket} players={players}/> 
     }
     else {
         return <LobbyLayout socket={socket} id={router.query.id} isCreator={isCreator} players={players} />
     }
+    
 }

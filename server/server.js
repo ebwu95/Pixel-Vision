@@ -41,9 +41,13 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
   if (err) throw err;
   var dbo = db.db(MONGODB_DB);
   var collection = dbo.collection("lobbies");
+
+  //connects to server
   io.on('connection', async (socket) => {
     console.log(`User connected ${socket.id}`);
     console.log(io.sockets.adapter.rooms);
+
+    //creates lobby and updates the playerlist when players join
     socket.on('create_lobby', async (data) => {
       const { name, id } = data;
       socket.join(id);
@@ -54,6 +58,8 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
         io.in(id).emit('update_lobby', { players: [name] });
       });
     });
+
+    //lets player join valid lobby
     socket.on('join_lobby', async (data) => {
       const { name, lobby } = data;
       const lobbiesFound = collection.countDocuments({ code: lobby }).then(() => {
@@ -74,6 +80,8 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
       })
       //join room
     });
+
+    //starts game and creates gameboard 
     socket.on('start_game_req', async (data) => {
       const { lobby, score } = data;
       console.log(data)
@@ -92,6 +100,8 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
           io.in(lobby).emit('start_round_0', { round: 1, scores: score, boxes: rows });
       })
     })
+
+    //
     socket.on('end_round_0', async (data) => {
       const rows = []
       for (let i = 0; i < 3; i++) {
@@ -99,6 +109,8 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
       }
       io.in(data.lobby).emit('start_round_1', { round: data.round, boxes: rows });
     });
+    
+    //
     socket.on('end_round_1', async (data) => {
       console.log("end_round_1 received");
       collection.findOne({code: data.lobby}, (err, res) => {
@@ -127,6 +139,15 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
         });
       });
     });
+    /*ending the game: not done
+    socket.on('end-game', async (data) => {
+      const {lobby} = data;
+      collection.findOne({code: lobby}, (err, res) => {
+        if (err) throw err;
+        
+      });
+    });*/
+
   });
 });
 
