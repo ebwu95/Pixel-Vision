@@ -11,14 +11,6 @@ function Leaderboard({players, scores}) {
             score: scores[index],
         };
     });
-    
-    /*let data = [
-        { id: 1, username: 'THENERDKING ', score: 90 },
-        { id: 2, username: 'ur mom LOL ', score: 85 },
-        { id: 3, username: 'RAmenNUDO ', score: 95 },
-        { id: 4, username: 'diog ', score: 75 }
-      ];*/
-      
     data.sort((a, b) => b.score - a.score);
 
     const goLobby = () => {

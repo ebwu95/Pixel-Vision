@@ -83,8 +83,10 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
 
     //starts game and creates gameboard 
     socket.on('start_game_req', async (data) => {
-      const { lobby, score } = data;
+      const { lobby, score, round} = data;
       console.log(data)
+      //console.log("socket.on: round: " + round);
+      const maxRound = round;
       const colours = ['red', 'green', 'yellow', 'blue', 'black']
       const rows = []
       for (let i = 0; i < 3; i++) {
@@ -97,7 +99,7 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
       }
       receipt = new Array(score.length).fill(false)
       collection.updateOne({code: lobby }, {$set: {round : 1, boxes: rows, scores: score, received: receipt}}).then(() => {
-          io.in(lobby).emit('start_round_0', { round: 1, scores: score, boxes: rows });
+          io.in(lobby).emit('start_round_0', { round: 1, scores: score, boxes: rows, totalRound: maxRound});
       })
     })
 
@@ -139,14 +141,6 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
         });
       });
     });
-    /*ending the game: not done
-    socket.on('end-game', async (data) => {
-      const {lobby} = data;
-      collection.findOne({code: lobby}, (err, res) => {
-        if (err) throw err;
-        
-      });
-    });*/
 
   });
 });

@@ -12,7 +12,8 @@ export default function Lobby({ name, socket }) {
     const [round, setRound] = useState(0);
     const [score, setScore] = useState(new Array(players.length).fill(0));
     const [endGame, setEndGame] = useState(false);
-    const maxRounds = 1;
+    let globalMaxRounds = -1;
+    
 
     //updates number of players
     useEffect(() => {
@@ -26,8 +27,12 @@ export default function Lobby({ name, socket }) {
 
         //tell client to start game
         socket.on('start_round_0', (data) => {
+            console.log("data.totalRound: " + data.totalRound);
+            if (globalMaxRounds === -1) {
+                globalMaxRounds = data.totalRound;
+            }
             setScore(data.scores)
-            if (data.round == 2*maxRounds+1) {//data.round will always be a odd number starting from 3 and increase by 2
+            if (data.round >= 2*globalMaxRounds+1 && globalMaxRounds !== -1) {//data.round will always be a odd number starting from 3 and increase by 2
                 setEndGame(true);
             }
             setRound(data.round);
@@ -43,11 +48,9 @@ export default function Lobby({ name, socket }) {
         });
     }, [socket]);
     const isCreator = socket.id == router.query.id
-
-    console.log("score:" + score);//score might work for final leaderboard at the end?
     
     if (endGame) {
-        return <Leaderboard players={players} scores={score}/>
+        return <Leaderboard players={players} scores={score} maxRounds={globalMaxRounds}/>
     }
     if (inGame) {
         return <Game score={score} boxes={boxes} setBoxes={setBoxes} round={round} timeLimit={5 * round} isCreator={isCreator} playerID={players.findIndex((player) => player === name)} socket={socket} players={players}/> 
