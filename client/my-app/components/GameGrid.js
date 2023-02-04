@@ -21,7 +21,7 @@ const GameGrid = ({width, height, colour, boxes, setBoxes}) => {
                   className="gh gw"
                   key={j}
                   style={{ border: '5px solid black', backgroundColor: boxColor }}
-                  onClick={() => toggleBox(i, j)}
+                  onMouseDownCapture={() => toggleBox(i, j)}
                   onMouseEnter={() => isMouseDown && toggleBox(i, j)}
                     onMouseDown={() => setIsMouseDown(true)}
                     onMouseUp={() => setIsMouseDown(false)}

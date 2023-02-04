@@ -2,17 +2,16 @@ import Router from "next/router";
 import React from "react";
 import RankTable from "../components/rankTable";
 
-//writen by Eric Wang e237wang@uwaterloo.ca
-const data = [
-    { id: 1, username: 'THENERDKING ', score: 90 },
-    { id: 2, username: 'ur mom LOL ', score: 85 },
-    { id: 3, username: 'RAmenNUDO ', score: 95 },
-    { id: 4, username: 'diog ', score: 75 }
-  ];
-data.sort((a, b) => b.score - a.score);
+function Leaderboard({players, scores}) {
 
-
-function Leaderboard() {
+    const data = players.map((player, index) => {
+        return {
+            id: index + 1,
+            username: player,
+            score: scores[index],
+        };
+    });
+    data.sort((a, b) => b.score - a.score);
 
     const goLobby = () => {
         Router.push('/')

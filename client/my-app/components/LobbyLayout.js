@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import PlayerList from "./PlayerList.js"
-
 function LobbyLayout({ socket, id, isCreator, players }) {
     return (
         <div className="h-100 d-flex align-items-center justify-content-center">
@@ -30,10 +29,11 @@ function LobbyLayout({ socket, id, isCreator, players }) {
 {/* Settings Pane */ } {/* Lobby Name, Max Players, drawing time, #rounds, custom words */ }
 function SettingsPane({ socket, lobby, players }) {
     const startGame = () => {
-        if (players.length >= 1) {
-            console.log(lobby);
-            socket.emit('start_game_req', { lobby });
-        }
+        const round = parseInt(document.querySelector('#rounds-select').value, 10);//picking the round works, but cant stop at chosen round
+        const score = new Array(players.length).fill(0);
+        console.log("chosen round:" + round);
+        socket.emit('start_game_req', { lobby, score, round});
+        
     }
     return (
         <div className="settings-pane h-75 px-3 pb-2 bg-light rounded shadow mx-5 col-sm-5 d-flex flex-column justify-content-around">
@@ -74,7 +74,7 @@ function SettingsPane({ socket, lobby, players }) {
                     </div>
                     <div class="form-group">
                         <label for="gameSettingsLobbyName" className="form-label fs-5">Rounds</label>
-                        <select class="form-select form-select-lg">
+                        <select class="form-select form-select-lg" id="rounds-select">
                             <option value="2">2</option>
                             <option value="3" selected="selected">3</option>
                             <option value="4">4</option>
