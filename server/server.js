@@ -27,6 +27,8 @@ app.get('/', (req, res) => {
   res.send(io.sockets.adapter.rooms);
 })
 
+
+// verify(guesses, answers) returns the score of a player by comparing the answer grid to the drawn grid
 const verify = (guesses, answers) => {
   let score = 0;
   for (let i = 0; i < guesses.length; i++) {
@@ -86,7 +88,8 @@ MongoClient.connect(MONGODB_URI, async function (err, db) { // connect to mongod
       //join room
     });
 
-    // listen for a request of host starting the game, then emits a start_game event
+    // listen for a request of the host starting a game, then initializes the random grid to draw, the scores, lobby settings and
+    // finally emits a start_game event to everyone in the lobby
     socket.on('start_game_req', async (data) => {
       const { lobby, score, round } = data;
       console.log(data)
@@ -102,13 +105,14 @@ MongoClient.connect(MONGODB_URI, async function (err, db) { // connect to mongod
         }
         rows.push(column)
       }
-      receipt = new Array(score.length).fill(false)
+      // array to make sure every player's socket received info updates (received at diff. times)
+      receipt = new Array(score.length).fill(false);
       collection.updateOne({ code: lobby }, { $set: { round: 1, boxes: rows, scores: score, received: receipt } }).then(() => {
         io.in(lobby).emit('start_round_0', { round: 1, scores: score, boxes: rows, totalRound: maxRound });
       })
     })
 
-    //
+    // listen for memorizing_round_end event, reset the board to white squares and start the guessing round
     socket.on('end_round_0', async (data) => {
       const rows = []
       for (let i = 0; i < 3; i++) {
@@ -117,30 +121,32 @@ MongoClient.connect(MONGODB_URI, async function (err, db) { // connect to mongod
       io.in(data.lobby).emit('start_round_1', { round: data.round, boxes: rows });
     });
 
-    //
+    // listens guessing_round_end event and updates the player's score
     socket.on('end_round_1', async (data) => {
       console.log("end_round_1 received");
       collection.findOne({ code: data.lobby }, (err, res) => {
         if (err) throw err;
-        const scoreDelta = verify(data.guess, res.boxes);
+        const scoreDelta = verify(data.guess, res.boxes); // calculate player drawing's score
         var score = res.scores;
         var receipt = res.received;
         receipt[data.player] = true;
         score[data.player] += scoreDelta;
-        const done = receipt.every(value => value);
+        const done = receipt.every(value => value); // if all players in receipt[] is true (all players score updated)
         const colours = ['red', 'green', 'yellow', 'blue', 'black']
         const rows = []
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 3; i++) { // create a grid filled with random colors 
           const column = []
           for (let j = 0; j < 3; j++) {
-            const ind = Math.floor(Math.random() * 5)
-            column.push(colours[ind])
+            const ind = Math.floor(Math.random() * 5);
+            column.push(colours[ind]);
           }
-          rows.push(column)
+          rows.push(column);
         }
         if (done) {
           receipt = receipt.fill(false);
         }
+
+        // start new memorizing round
         collection.updateOne({ code: data.lobby }, { $set: { round: data.round, boxes: rows, scores: score, received: receipt } }).then(() => {
           io.in(data.lobby).emit('start_round_0', { round: data.round, boxes: rows, scores: score });
         });
