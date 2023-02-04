@@ -99,7 +99,7 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
           }
           rows.push(column)
       }
-      receipt = new Array(score.length).fill(false)
+      receipt = new Array(score.length).fill(false)//boolean array that stores whether or not each socket had received the scoket event or not 
       collection.updateOne({code: lobby }, {$set: {round : 1, boxes: rows, scores: score, received: receipt}}).then(() => {
           io.in(lobby).emit('start_round_0', { round: 1, scores: score, boxes: rows, totalRound: maxRound});
       })
