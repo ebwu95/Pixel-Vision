@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+//required stuff
 const express = require('express');
 const app = express();
 const http = require('http');
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
   res.send(io.sockets.adapter.rooms);
 })
 
+//function for checking if user guesses correct block color
 const verify = (guesses, answers) => {
   let score = 0;
   for (let i = 0; i < guesses.length; i++) {
@@ -103,7 +105,7 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
       })
     })
 
-    //
+    //ends the memorizing round and starts the round to fill the white blocks with guesses
     socket.on('end_round_0', async (data) => {
       const rows = []
       for (let i = 0; i < 3; i++) {
@@ -112,7 +114,7 @@ MongoClient.connect(MONGODB_URI, async function (err, db) {
       io.in(data.lobby).emit('start_round_1', { round: data.round, boxes: rows });
     });
     
-    //
+    //ends the guessing round and makes a new memorizing round with new random colors
     socket.on('end_round_1', async (data) => {
       console.log("end_round_1 received");
       collection.findOne({code: data.lobby}, (err, res) => {
