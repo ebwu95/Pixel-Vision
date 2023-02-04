@@ -2,7 +2,8 @@ import React from "react";
 
 function RankTable({data}) {
 
-    //assumes sorted list
+    //assumes sorted list to display highest scores at top of list
+    //displays list of players with their rank, username, and score
     const rows = data.map((item, index) => {
         return (
             <tr key={item.id}>
