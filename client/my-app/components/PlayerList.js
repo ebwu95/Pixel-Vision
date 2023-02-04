@@ -4,6 +4,7 @@ import PlayerListTile from './PlayerListTile.js'
 const colorList = ["red", "darkorange", "gold", "lime", "turquoise", "indigo", "purple", "mediumvioletred"]
 const avatarList = ["😀", "😎", "🙁", "😨", "😳", "🤡", "😈", "💀"]
 
+//displays list of players in the lobby 
 function PlayerList({ players }) {
     let listIndex = -1
     return (

@@ -3,6 +3,7 @@ import PlayerListTile from './PlayerListTile.js'
 import ScoreListTile from './ScoreListTile.js'
 const colorList = ["red", "darkorange", "gold", "lime", "turquoise", "indigo", "purple", "mediumvioletred"]
 
+//displays players and their scores 
 function ScoreList({ players, scores }) {
     let listIndex = -1
     return (

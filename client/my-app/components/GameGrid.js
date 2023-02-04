@@ -11,6 +11,7 @@ const GameGrid = ({width, height, colour, boxes, setBoxes}) => {
         })
     }
 
+    //lets users change box color
     const rows = []
     for (let i = 0; i < height; i++) {
         const cols = []

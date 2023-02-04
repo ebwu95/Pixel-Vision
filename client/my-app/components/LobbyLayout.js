@@ -28,6 +28,8 @@ function LobbyLayout({ socket, id, isCreator, players }) {
 
 {/* Settings Pane */ } {/* Lobby Name, Max Players, drawing time, #rounds, custom words */ }
 function SettingsPane({ socket, lobby, players }) {
+
+    //clicking create game button starts game event
     const startGame = () => {
         const round = parseInt(document.querySelector('#rounds-select').value, 10);
         //working on getting the restrictions from settings

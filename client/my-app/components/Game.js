@@ -10,6 +10,7 @@ function Game({boxes, setBoxes, score, timeLimit, isCreator, round, playerID, pl
     const router = useRouter()
     console.log(colour);
     const [timer, setTimer] = useState(timeLimit);
+    //changes gameState: display round number, alternate between memorizing and guessing round events, display timer
     useEffect(() => {
         setDisplayedRound(Math.ceil(round/2))
         const interval = setInterval(() => {
