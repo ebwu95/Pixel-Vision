@@ -112,7 +112,6 @@ MongoClient.connect(MONGODB_URI, async function (err, db) { // connect to mongod
       })
     })
 
-    // listen for memorizing_round_end event, reset the board to white squares and start the guessing round
     socket.on('end_round_0', async (data) => {
       const rows = []
       for (let i = 0; i < 3; i++) {
